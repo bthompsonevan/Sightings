@@ -12,6 +12,8 @@ using Sightings.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
+using Sightings.Models;
 
 namespace Sightings
 {
@@ -27,6 +29,17 @@ namespace Sightings
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+             services.AddSingleton<Irepository, Repository>();
+            services.AddMvc()
+                .AddXmlDataContractSerializerFormatters()
+                .AddMvcOptions(opts => {
+                    opts.FormatterMappings.SetMediaTypeMappingForFormat("xml",
+                        new MediaTypeHeaderValue("application/xml"));
+                    opts.RespectBrowserAcceptHeader = true;
+                    opts.ReturnHttpNotAcceptable = true;
+                });
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -57,6 +70,11 @@ namespace Sightings
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseStatusCodePages();
+            app.UseDeveloperExceptionPage();
+            app.UseStaticFiles();
+           
 
             app.UseEndpoints(endpoints =>
             {
