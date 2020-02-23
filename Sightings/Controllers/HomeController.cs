@@ -11,16 +11,28 @@ namespace Sightings.Controllers
 {
     public class HomeController : Controller
     {
+        private Irepository repository { get; set; }
+
+        public HomeController(Irepository repo) => repository = repo;
+
+        public ViewResult Index() => View(repository.Sightings);
+
+        [HttpPost]
+        public IActionResult AddSighting(Sighting sighting)
+        {
+            repository.AddSighting(sighting);
+            return RedirectToAction("Index");
+        }
+
+
+
+        //Below is pregenerated code
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         public IActionResult Privacy()

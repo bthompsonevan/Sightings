@@ -23,7 +23,7 @@ namespace Sightings.Models
                  }.ForEach(r=>AddSighting(r));
             }
 
-            public Sighting this [int id] => sightingItems.ContainsKey(id) ? sightingItems[id] : null;
+        public Sighting this [int id] => sightingItems.ContainsKey(id) ? sightingItems[id] : null;
 
         public IEnumerable<Sighting> Sightings => sightingItems.Values;
 

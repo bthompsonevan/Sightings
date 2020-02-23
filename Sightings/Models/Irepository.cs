@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Sightings.Models
 {
-    public class Irepository
+    public interface Irepository
     {
         IEnumerable<Sighting> Sightings { get; }
 
