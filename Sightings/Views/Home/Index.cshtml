@@ -1,8 +1,39 @@
-﻿@{
+﻿@model IEnumerable<Sighting>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form id="addform" asp-action="AddSighting" method="post">
+    <div class="form-group">
+        <label for="SightingLocation">County:</label>
+        <input class="form-control" name="SightingLocation" />
+    </div>
+    <div class="form-group">
+        <label for="SightingDate">Date:</label>
+        <input class="form-control" name="SightingDate" />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Add Sighting</button>
+    </div>
+</form>
+
+<table class="table table-sm table-striped table-bordered m-2">   
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Sighting Location</th>
+            <th>Sighting Date</th>
+         </tr>
+    </thead>    
+    <tbody>       
+        @foreach (var r in Model)
+            {
+                <tr>                
+                    <td>@r.SightingID</td> 
+                    <td>@r.SightingLocation</td>               
+                    <td>@r.SightingDate</td>            
+                </tr>
+             }    
+    </tbody> 
+</table>
+
