@@ -7,5 +7,14 @@ namespace Sightings.Models
 {
     public class Irepository
     {
+        IEnumerable<Sighting> Sightings { get; }
+
+        Sighting this[int id] { get; }
+
+        Sighting AddSighting(Sighting sighting);
+        Sighting UpdateSighting(Sighting sighting);
+        void DeleteSighting(int id);
+
+
     }
 }
