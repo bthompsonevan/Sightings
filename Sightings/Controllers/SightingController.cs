@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sightings.Controllers
 {
+    //API Controller
     [Route("api/[controller]")]
     public class SightingController : Controller
     {
