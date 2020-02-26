@@ -1,4 +1,4 @@
-﻿const SIGHTING_URL = "http://localhost:52659/Api/ClientIndex.html";
+﻿const SIGHTING_URL = "http://localhost:44313/Api/ClientIndex.html";
 
 function getAllSightings(onloadHandler) {
     var xhr = new XMLHttpRequest();
@@ -18,7 +18,7 @@ function fillTable() {
 
 function addRow(sightings) {
     var tbody = document.getElementsByTagName('tbody')[0];
-    var fields = ["sightingLocation", "sightingDate"];
+    var fields = ["sightingID", "sightingLocation", "sightingDate"];
     var tr = document.createElement('tr');
     // Add a cell with the value from each field
     for (var i in fields) {
