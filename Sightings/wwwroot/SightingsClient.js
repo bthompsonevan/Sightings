@@ -1,4 +1,4 @@
-﻿const SIGHTING_URL = "http://localhost:44313/Api/ClientIndex.html";
+﻿const SIGHTING_URL = "https://localhost:44313/api/sighting";
 
 function getAllSightings(onloadHandler) {
     var xhr = new XMLHttpRequest();
@@ -7,6 +7,10 @@ function getAllSightings(onloadHandler) {
     xhr.open("GET", SIGHTING_URL, true);
     xhr.send();
 }
+
+
+
+//const response = await fetch()
 
 // Loop through the books and put them in the table
 function fillTable() {
