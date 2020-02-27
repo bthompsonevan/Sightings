@@ -31,15 +31,35 @@ namespace Sightings.Controllers
         public Sighting Put([FromBody] Sighting sig) =>
             repository.UpdateSighting(sig);
 
+        //[HttpPatch("{id}")]
+        //public StatusCodeResult Patch(int id,
+        //    [FromBody]JsonPatchDocument<Sighting> patch)
+        //{
+        //    Sighting sig = Get(id);
+        //    if (sig != null)
+        //    {
+        //        patch.ApplyTo(sig);
+        //        return Ok();
+        //    }
+        //    return NotFound();
+        //}
+
+
         [HttpPatch("{id}")]
-        public StatusCodeResult Patch(int id,
-            [FromBody]JsonPatchDocument<Sighting> patch)
+        public StatusCodeResult UpdateSighting(int id, string operation, string parameterName, string parameterValue)
         {
             Sighting sig = Get(id);
-            if (sig != null)
+            if (operation == "replace")
             {
-                patch.ApplyTo(sig);
-                return Ok();
+                switch (parameterName)
+                {
+                    case "sightingLocation":
+                        sig.SightingLocation = parameterValue;
+                        break;
+                    case "generalLocation":
+                        sig.SightingDate = Convert.ToDateTime(parameterValue);
+                        break;
+                }
             }
             return NotFound();
         }

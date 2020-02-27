@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Sightings.Models
 {
-    public class Repository : Irepository
+    public class MemoryRepository : Irepository
     {
         private Dictionary<int, Sighting> sightingItems;
 
-        public Repository()
+        public MemoryRepository()
         {
             sightingItems = new Dictionary<int, Sighting>();
             new List<Sighting>

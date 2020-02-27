@@ -8,7 +8,6 @@ namespace Sightings.Models
     public interface Irepository
     {
         IEnumerable<Sighting> Sightings { get; }
-
         Sighting this[int id] { get; }
 
         Sighting AddSighting(Sighting sighting);
