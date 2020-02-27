@@ -29,9 +29,7 @@ function addRow(sightings) {
         var td = document.createElement('td');
         var field = fields[i];
         if (field == "sightingDate") {
-            td.innerHTML = sightings[field].substr(0, 4);
-        } else if (field == "sightingLocation") {
-            td.innerHTML = sightings[field][0].name;
+            td.innerHTML = sightings[field].substr(0, 4);        
         } else {
             td.innerHTML = sightings[field];
         }
