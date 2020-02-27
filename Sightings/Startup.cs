@@ -29,7 +29,7 @@ namespace Sightings
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-             services.AddSingleton<Irepository, Repository>();
+             services.AddSingleton<Irepository, MemoryRepository>();
             services.AddMvc()
                 .AddXmlDataContractSerializerFormatters()
                 .AddMvcOptions(opts => {
@@ -64,7 +64,7 @@ namespace Sightings
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            
 
             app.UseRouting();
 
