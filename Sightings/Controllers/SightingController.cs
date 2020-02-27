@@ -31,6 +31,7 @@ namespace Sightings.Controllers
         public Sighting Put([FromBody] Sighting sig) =>
             repository.UpdateSighting(sig);
 
+        // Postman request goes returns an OK result, but does not manipulate the data. 
         //[HttpPatch("{id}")]
         //public StatusCodeResult Patch(int id,
         //    [FromBody]JsonPatchDocument<Sighting> patch)
@@ -39,29 +40,31 @@ namespace Sightings.Controllers
         //    if (sig != null)
         //    {
         //        patch.ApplyTo(sig);
+        //        repository.UpdateSighting(sig);
         //        return Ok();
         //    }
         //    return NotFound();
         //}
 
-
         [HttpPatch("{id}")]
-        public StatusCodeResult UpdateSighting(int id, string operation, string parameterName, string parameterValue)
+        public IActionResult Patch(int id, [FromBody]PatchModel patchVm)
         {
+            // TODO: Add support for more ops: remove, copy, move, test
+
             Sighting sig = Get(id);
-            if (operation == "replace")
+            switch (patchVm.Path)
             {
-                switch (parameterName)
-                {
-                    case "sightingLocation":
-                        sig.SightingLocation = parameterValue;
-                        break;
-                    case "generalLocation":
-                        sig.SightingDate = Convert.ToDateTime(parameterValue);
-                        break;
-                }
+                case "sightingLocation":
+                    sig.SightingLocation = patchVm.Value;
+                    break;
+                case "sightingDate":
+                    sig.SightingDate = Convert.ToDateTime(patchVm.Value);
+                    break;
+                default:
+                    return BadRequest();
             }
-            return NotFound();
+            //repository.Edit(sig);
+            return Ok(sig);
         }
 
         [HttpDelete("{id}")]
