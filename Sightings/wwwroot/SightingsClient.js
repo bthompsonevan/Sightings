@@ -81,8 +81,8 @@ function fillSelectList() {
     var sel = document.getElementsByTagName('select')[0];
     for (var i in sightings) {
         var opt = document.createElement("option");
-        opt.setAttribute("value", sightings[i].bookID);
-        opt.innerHTML = sightings[i].title;
+        opt.setAttribute("value", sightings[i].sightingID);
+        opt.innerHTML = sightings[i].sightingLocation;
         sel.appendChild(opt);
     }
 }
