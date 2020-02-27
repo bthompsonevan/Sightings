@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Edit or Delete</title>
+    <script src="SightingsClient.js"></script>
+    <script>// set event handlers and fill the select list
+        function init() {
+            // set up the event handler for posting book data
+            var form = document.getElementById("sightingForm");
+
+            var updateButton = document.getElementById("updateButton");
+            updateButton.onclick = updateSighting;
+
+            var replaceButton = document.getElementById("replaceButton");
+            replaceButton.onclick = replaceSighting;
+
+            var deleteButton = document.getElementById("deleteButton");
+            deleteButton.onclick = deleteSighting;
+
+            // set the event handler for the select list
+            var sel = document.getElementsByTagName("select")[0];
+            sel.onchange = getSightingId;
+
+            // Fill the drop-down in the select list box with book data when the page opens
+            getAllBooks(fillSelectList);
+        }
+    </script>
+</head>
+
+<body onload="init()">
+
+    <h1>Edit or Delete Book Information</h1>
+    <nav>
+        <a href="ClientIndex.html">Home - List all Sightings</a><br>
+        <a href="ClientIndex.html">Home - Add a Sighting</a><br>
+    </nav>
+    <form id="bookForm">
+        <p>
+            <select>
+                <option value="0">Choose a Sighting</option>
+            </select>
+        </p>
+        <input name="sightingID" hidden>
+
+        <label for="sightingLocation">Sighting Location</label>
+        <input name="sightingLocation" placeholder="Enter Sighting">
+        <br>
+        <label for="sightingDate">Sighting Date</label>
+        <input name="sightingDate" placeholder="12/31/2000">
+    </form>
+    <br>
+    <button id="updateButton">Update Location</button> - Change the Sighting Location only
+    <p>
+        <button id="replaceButton">Replace Sighting</button> - Replace entire Sighting
+    </p>
+    <p>
+        <button id="deleteButton">Delete Sighting</button> - Remove the Sighting
+    </p>
+</body>
+
+</html>
