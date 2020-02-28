@@ -122,7 +122,7 @@ function updateSighting() {
     // create an HTTP PATCH request
     var xhr = new XMLHttpRequest();
     var sightingId = form[1].value;
-    xhr.open("PATCH", SIGHTING_URL + "/" + sightingId, true);
+    xhr.open("PATCH", SIGHTING_URL + "/" + sightingID, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onerror = errorHandler;
 

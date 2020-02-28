@@ -23,7 +23,7 @@ namespace Sightings.Controllers
         public Sighting Get(int id) => repository[id];
 
         [HttpPost] 
-        public Sighting Post([FromBody] Sighting sig) => 
+        public Sighting Post([FromBody]Sighting sig) => 
             repository.AddSighting(new Sighting 
                 { SightingLocation = sig.SightingLocation, SightingDate = sig.SightingDate });
 
