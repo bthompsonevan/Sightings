@@ -117,12 +117,14 @@ function updateSighting() {
     var form = document.getElementById('sightingForm');
     patchCommands.value = form[2].value; // title
     patchCommands.op = "replace";
-    patchCommands.path = "title";
+    patchCommands.path = "sightingLocation";
 
     // create an HTTP PATCH request
     var xhr = new XMLHttpRequest();
     var sightingId = form[1].value;
+    
     xhr.open("PATCH", SIGHTING_URL + "/" + sightingID, true);
+    // !!! BREAKPOINT DOES NOT MOVE PAST THIS POINT !!!
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onerror = errorHandler;
 
