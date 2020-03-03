@@ -114,7 +114,7 @@ function fillForm() {
 
 function updateSighting() {
     var patchCommands = {};
-    var form = document.getElementById('bookForm');
+    var form = document.getElementById('sightingForm');
     patchCommands.value = form[2].value; // title
     patchCommands.op = "replace";
     patchCommands.path = "title";
