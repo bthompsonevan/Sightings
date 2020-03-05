@@ -65,12 +65,16 @@ function addSighting() {
     xhr.open("POST", SIGHTING_URL, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onerror = errorHandler;
-    xhr.onreadystatechange = function () {
-        // if readyState is "done" and status is "success"
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            addRow(JSON.parse(xhr.responseText));
-        }
+
+    //  !!!  Line 74 is this.responseText is returning null values for this section  !!!   
+
+    xhr.onload = function () {
+        // Called when the request completes successfully.
+        // Will parse the JSON data that was sent and put it in a table row.
+        var sighting = JSON.parse(this.responseText);
+        addRow(sighting);
     };
+
     // serialize the data to a string so it can be sent
     var dataString = JSON.stringify(data);
     xhr.send(dataString);

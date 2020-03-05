@@ -18,6 +18,7 @@ namespace Sightings.Controllers
 
         [HttpGet]
         public IEnumerable<Sighting> Get() => repository.Sightings;
+        
 
         [HttpGet("{id}")]
         public Sighting Get(int id) => repository[id];
@@ -25,7 +26,7 @@ namespace Sightings.Controllers
         [HttpPost] 
         public Sighting Post(Sighting sig) => 
             repository.AddSighting(new Sighting 
-                { SightingID = sig.SightingID, SightingLocation = sig.SightingLocation, SightingDate = sig.SightingDate });
+                { SightingLocation = sig.SightingLocation, SightingDate = sig.SightingDate });
 
         [HttpPut]
         public Sighting Put([FromBody] Sighting sig) =>
