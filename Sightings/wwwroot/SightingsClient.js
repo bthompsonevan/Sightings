@@ -66,7 +66,8 @@ function addSighting() {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onerror = errorHandler;
 
-    //  !!!  Line 74 is this.responseText is returning null values for this section  !!!   
+    //  !!!  Line 74 is this.responseText is returning null values for this section  !!! 
+    // !!!  03/12/2020  ePreviously it would atleast add a line to the list, but now is not adding an item to the list !!!  
 
     xhr.onload = function () {
         // Called when the request completes successfully.
