@@ -1,4 +1,5 @@
-﻿const SIGHTING_URL = "https://localhost:44313/api/sighting";
+﻿//const SIGHTING_URL = "https://localhost:44313/api/sighting";
+const SIGHTING_URL = "https://sightings20200314020010.azurewebsites.net/";
 
 function getAllSightings(onloadHandler) {
     var xhr = new XMLHttpRequest();
