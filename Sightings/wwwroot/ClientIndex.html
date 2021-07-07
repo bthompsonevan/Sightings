@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="SightingsClient.js"></script>
+    <script>// set up event handlers for this page
+        function init() {
+            // set up the event handler for posting book data
+            var form = document.getElementById("sightingForm");
+            form.onsubmit = function(e) {
+                // prevent the form from sending an HTTP request when it is submitted
+                e.preventDefault();
+                addSighting();
+            };
+            // Fill the table on the page with book data when the page opens
+            getAllSightings(fillTable);
+        }
+    </script>
+    <title>Sightings API Client</title>
+</head>
+
+<body onload="init()">
+
+    <h1>Sightings Web Service Client</h1>
+
+    <nav>
+        <a href="#addSighting">Add a sighting to the database</a><br>
+        <a href="Update.html">Edit a sighting already in the database</a><br>
+    </nav>
+
+    <h2>List of all Sightings</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sighting ID</th>
+                <th>Sighting Location</th>
+                <th>Sighting Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <section id="addSighting">
+        <h2>Add a Sighting</h2>
+        <form id="sightingForm">
+            <!--<label for="sightingID">ID</label>
+            <input name="sightingID" placeholder="ID">
+            <br>-->
+            <label for="sightingLocation">Sighting Location</label>
+            <input name="sightingLocation" placeholder="Lane County">
+            <br />
+            <label for="sightingDate">Sighting Date</label>
+            <input name="sightingDate" placeholder="1/1/1900">
+            <br><br>
+            <button>Add Sighting</button>
+        </form>
+    </section>
+</body>
+
+</html>

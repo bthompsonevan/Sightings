@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sightings.Controllers
 {
+    //API Controller
     [Route("api/[controller]")]
     public class SightingController : Controller
     {
@@ -17,12 +18,13 @@ namespace Sightings.Controllers
 
         [HttpGet]
         public IEnumerable<Sighting> Get() => repository.Sightings;
+        
 
         [HttpGet("{id}")]
         public Sighting Get(int id) => repository[id];
 
         [HttpPost] 
-        public Sighting Post([FromBody] Sighting sig) => 
+        public Sighting Post([FromBody]Sighting sig) => 
             repository.AddSighting(new Sighting 
                 { SightingLocation = sig.SightingLocation, SightingDate = sig.SightingDate });
 
@@ -30,17 +32,38 @@ namespace Sightings.Controllers
         public Sighting Put([FromBody] Sighting sig) =>
             repository.UpdateSighting(sig);
 
+        //[HttpPatch("{id}")]
+        //public StatusCodeResult Patch(int id,
+        //    [FromBody]JsonPatchDocument<Sighting> patch)
+        //{
+        //    Sighting sig = Get(id);
+        //    if (sig != null)
+        //    {
+        //        patch.ApplyTo(sig);
+        //        return Ok();
+        //    }
+        //    return NotFound();
+        //}
+
         [HttpPatch("{id}")]
-        public StatusCodeResult Patch(int id,
-            [FromBody]JsonPatchDocument<Sighting> patch)
+        public IActionResult Patch(int id, [FromBody]PatchModel patchVm)
         {
+            // TODO: Add support for more ops: remove, copy, move, test
+
             Sighting sig = Get(id);
-            if (sig != null)
+            switch (patchVm.Path)
             {
-                patch.ApplyTo(sig);
-                return Ok();
+                case "sightingLocation":
+                    sig.SightingLocation = patchVm.Value;
+                    break;
+                case "sightingDate":
+                    sig.SightingDate = Convert.ToDateTime(patchVm.Value);
+                    break;
+                default:
+                    return BadRequest();
             }
-            return NotFound();
+            //repository.Edit(sig);
+            return Ok(sig);
         }
 
         [HttpDelete("{id}")]
